@@ -1,0 +1,4 @@
+myhosts:
+    hosts:
+        my_host_01:
+            ansible_host: 192.168.10.1
