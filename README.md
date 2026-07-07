@@ -44,7 +44,9 @@ Then create a project folder for Ansible using `mkdir ansible_quickstart` and `c
 
 *If you're not use to Linux and ever lost use `ls` to list out all the files in your current directory, and then use `cd filename` to access that file. Also `cd ..` will move you up and out of the directory you're in.* 
 
-Then we can start working on a device inventory. Don't panic! We'll start with just one device for testing. Create inventory.ini using the command `touch inventory.ini`.
+Then we can start working on a device inventory. Don't panic! We'll start with just one device for testing. Create inventory.yaml using the command `touch inventory.yaml`.
+
+*You can also create an INI file with different formatting, but for our use case YAML scales better.*
 
 Now we get to use our designated text editor, this guide will use Nano, run `nano inventory.yaml`
 
@@ -79,4 +81,3 @@ Let's get a small pool of 5 test devices.
 
 3 Switches
 2 Firewalls
-    10.5.33.241
