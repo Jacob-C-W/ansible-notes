@@ -1,4 +1,44 @@
-myhosts:
-    hosts:
-        my_host_01:
-            ansible_host: 192.168.10.1
+---
+all:
+  children:
+    sites:
+      children:
+        site_generic:
+          children:
+            access:
+              hosts:
+                access-sw01:
+                  ansible_host: 192.168.10.11   # Replace with real IP
+                  ansible_network_os: cisco.ios.ios
+                access-sw02:
+                  ansible_host: 192.168.10.12   # Replace with real IP
+                  ansible_network_os: cisco.ios.ios
+
+              vars:
+                ansible_connection: ansible.netcommon.network_cli
+                ansible_user: "{{ vault_user }}"
+                ansible_password: "{{ vault_pass }}"
+                ansible_become: true
+                ansible_become_method: enable
+                ansible_become_password: "{{ vault_enable }}"
+
+            datacenter:
+              hosts:
+                dc-sw01:
+                  ansible_host: 192.168.20.11   # Replace with real IP
+                  ansible_network_os: cisco.ios.ios
+                dc-fw01:
+                  ansible_host: 192.168.20.10   # Replace with real IP
+                  ansible_network_os: paloaltonetworks.panos
+                  ansible_connection: httpapi
+                  ansible_httpapi_use_ssl: true
+                  ansible_httpapi_validate_certs: false
+
+              vars:
+                ansible_user: "{{ vault_user }}"
+                ansible_password: "{{ vault_pass }}"
+                ansible_connection: ansible.netcommon.network_cli   # Override for Palo if needed
+
+          vars:
+            # Site-level common vars (if any)
+            ansible_network_os: cisco.ios.ios   # Default for most

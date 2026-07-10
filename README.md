@@ -44,6 +44,16 @@ Then create a project folder for Ansible using `mkdir ansible_quickstart` and `c
 
 *If you're not use to Linux and ever lost use `ls` to list out all the files in your current directory, and then use `cd filename` to access that file. Also `cd ..` will move you up and out of the directory you're in.* 
 
+
+### Ansible-Galaxy Collections
+
+Before we get started with inventories and commands we needs collections to support the enviorment. With normal Python capable machines Ansible works quite well out of the box, but network devices can have limitations that can be an obstacle. 
+
+    ansible-galaxy collection install ansible.netcommon cisco.ios paloaltonetworks.panos
+
+*You can also find collections at https://galaxy.ansible.com/ui/ and then only grab collections from the official vendor or the official Ansible community.*
+#
+
 Then we can start working on a device inventory. Don't panic! We'll start with just one device for testing. Create inventory.yaml using the command `touch inventory.yaml`.
 
 *You can also create an INI file with different formatting, but for our use case YAML scales better.*
